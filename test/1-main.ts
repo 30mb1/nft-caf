@@ -8,7 +8,8 @@ describe("Main test", function () {
 
   it('Deploy', async function() {
     const [owner, beneficiary] = await ethers.getSigners()
-    nft = await new NFT__factory(owner as any).deploy(owner.address, beneficiary.address);
+    nft = await new NFT__factory(owner as any).deploy(owner.address, beneficiary.address, "SOME URI");
+    await nft.waitForDeployment();
     // nft = await ethers.deployContract('NFT', [owner.address, beneficiary.address]);
 
     const _owner = await nft.owner();

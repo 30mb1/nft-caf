@@ -19,8 +19,9 @@ contract NFT is ERC721Enumerable, Ownable {
     address public beneficiary;
     string public baseURI;
 
-    constructor(address _owner, address _beneficiary) ERC721("NFT", "MCO") Ownable(_owner) {
+    constructor(address _owner, address _beneficiary, string memory _baseUri) ERC721("NFT", "MCO") Ownable(_owner) {
         beneficiary = _beneficiary;
+        baseURI = _baseUri;
 
         rounds.push(Round(3300000000000000000, 5000, 0, 50, false));
         rounds.push(Round(4400000000000000000, 3000, 5000, 30, false));

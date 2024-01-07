@@ -1,22 +1,17 @@
 import { ethers } from "hardhat";
+import {NFT, NFT__factory} from "../typechain-types";
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
+  const [deployer] = await ethers.getSigners()
 
-  const lockedAmount = ethers.parseEther("0.001");
+  const owner = "0x5b6df61f4d26379cB2c1bb25D436f70BDb0A99bC";
+  const beneficiary = "0x6Fb01e620BED0b6bEa9A8da432BBA7ef52D7FB57";
+  const uri = "";
 
-  const lock = await ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
+  const nft: NFT = await new NFT__factory(deployer as any).deploy(owner, beneficiary, uri);
+  await nft.waitForDeployment();
 
-  await lock.waitForDeployment();
-
-  console.log(
-    `Lock with ${ethers.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
-  );
+  console.log('Nft deployed', (await nft.getAddress()));
 }
 
 // We recommend this pattern to be able to use async/await everywhere
