@@ -6,7 +6,7 @@ async function main() {
 
   const owner = "0x5b6df61f4d26379cB2c1bb25D436f70BDb0A99bC";
   const beneficiary = "0x6Fb01e620BED0b6bEa9A8da432BBA7ef52D7FB57";
-  const uri = "";
+  const uri = "https://gateway.pinata.cloud/ipfs/QmWb26F3qC6JX1RuLwG5obAhSae2cQPtEnFeQfVuY5vsHm/";
 
   const nft: NFT = await new NFT__factory(deployer as any).deploy(owner, beneficiary, uri);
   await nft.waitForDeployment();

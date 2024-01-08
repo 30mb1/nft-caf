@@ -8,7 +8,7 @@ describe("Main test", function () {
 
   it('Deploy', async function() {
     const [owner, beneficiary] = await ethers.getSigners()
-    nft = await new NFT__factory(owner as any).deploy(owner.address, beneficiary.address, "SOME URI");
+    nft = await new NFT__factory(owner as any).deploy(owner.address, beneficiary.address, "https://SOME URI/");
     await nft.waitForDeployment();
     // nft = await ethers.deployContract('NFT', [owner.address, beneficiary.address]);
 
@@ -62,6 +62,9 @@ describe("Main test", function () {
 
     const user_rounds = await nft.roundNfts(buyer.address, 0);
     expect(user_rounds.toString()).to.be.eq("20");
+
+    const res = await nft.tokenURI(0);
+    console.log(res);
   });
 
   it("User try buy more than allowed", async function() {

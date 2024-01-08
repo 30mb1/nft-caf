@@ -1,10 +1,13 @@
 pragma solidity ^0.8.20;
 
 import {ERC721Enumerable, ERC721} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 
 contract NFT is ERC721Enumerable, Ownable {
+    using Strings for uint256;
+
     struct Round {
         uint price; // 18 decimals, native USDC
         uint16 limit; // remaining NFT to mint
@@ -19,7 +22,7 @@ contract NFT is ERC721Enumerable, Ownable {
     address public beneficiary;
     string public baseURI;
 
-    constructor(address _owner, address _beneficiary, string memory _baseUri) ERC721("NFT", "MCO") Ownable(_owner) {
+    constructor(address _owner, address _beneficiary, string memory _baseUri) ERC721("CAFF", "CAFF") Ownable(_owner) {
         beneficiary = _beneficiary;
         baseURI = _baseUri;
 
@@ -32,6 +35,14 @@ contract NFT is ERC721Enumerable, Ownable {
 
     function _baseURI() internal view override returns (string memory) {
         return baseURI;
+    }
+
+    function tokenURI(uint256 tokenId) public view override returns (string memory) {
+        _requireOwned(tokenId);
+
+        string memory baseUri = _baseURI();
+        string memory extended = bytes(baseUri).length > 0 ? string.concat(baseUri, tokenId.toString()) : "";
+        return string.concat(extended, ".json");
     }
 
     function setBaseUri(string calldata _baseUri) external onlyOwner {
