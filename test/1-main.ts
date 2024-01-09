@@ -1,14 +1,14 @@
-import {NFT, NFT__factory} from "../typechain-types";
+import {CAFF, CAFF__factory} from "../typechain-types";
 import {expect} from "chai";
 import {ethers} from "hardhat";
 
 
 describe("Main test", function () {
-  let nft: NFT;
+  let nft: CAFF;
 
   it('Deploy', async function() {
     const [owner, beneficiary] = await ethers.getSigners()
-    nft = await new NFT__factory(owner as any).deploy(owner.address, beneficiary.address, "https://SOME URI/");
+    nft = await new CAFF__factory(owner as any).deploy(owner.address, beneficiary.address, "https://SOME URI/");
     await nft.waitForDeployment();
     // nft = await ethers.deployContract('NFT', [owner.address, beneficiary.address]);
 

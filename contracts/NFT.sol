@@ -5,7 +5,7 @@ import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 
-contract NFT is ERC721Enumerable, Ownable {
+contract CAFF is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
     struct Round {
@@ -22,7 +22,7 @@ contract NFT is ERC721Enumerable, Ownable {
     address public beneficiary;
     string public baseURI;
 
-    constructor(address _owner, address _beneficiary, string memory _baseUri) ERC721("CAFF", "CAFF") Ownable(_owner) {
+    constructor(address _owner, address _beneficiary, string memory _baseUri) ERC721("ZKFair Cat Caff", "CAFF") Ownable(_owner) {
         beneficiary = _beneficiary;
         baseURI = _baseUri;
 
