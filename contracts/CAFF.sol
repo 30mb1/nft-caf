@@ -16,6 +16,7 @@ contract CAFF is ERC721Enumerable, Ownable {
         bool started;
     }
 
+
     Round[] public rounds;
     // user => amount of nfts bought for round
     mapping (address => mapping (uint => uint)) public roundNfts;
@@ -26,11 +27,11 @@ contract CAFF is ERC721Enumerable, Ownable {
         beneficiary = _beneficiary;
         baseURI = _baseUri;
 
-        rounds.push(Round(3300000000000000000, 5000, 0, 50, false));
-        rounds.push(Round(4400000000000000000, 3000, 5000, 30, false));
-        rounds.push(Round(5500000000000000000, 1000, 8000, 10, false));
-        rounds.push(Round(6600000000000000000, 666, 9000, 6, false));
-        rounds.push(Round(7700000000000000000, 333, 9666, 3, false));
+        rounds.push(Round(3300000000000000000, 5000, 1, 50, false));
+        rounds.push(Round(4400000000000000000, 3000, 5001, 30, false));
+        rounds.push(Round(5500000000000000000, 1000, 8001, 10, false));
+        rounds.push(Round(6600000000000000000, 666, 9001, 6, false));
+        rounds.push(Round(7700000000000000000, 333, 9667, 3, false));
     }
 
     function _baseURI() internal view override returns (string memory) {
